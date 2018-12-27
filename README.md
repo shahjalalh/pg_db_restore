@@ -1,6 +1,8 @@
 # PostgreSQL DB restore with ssh
 
-# Steps
+Copy **<file_name>.dump** into the target machine (host) **Documents/** folder with scp
+
+## Step-by-step
 1. ssh to host
 ```
 $ ssh odoo@host.ip 
@@ -31,13 +33,15 @@ postgres=# \q
 $ sudo -u odoo createdb abc_20181227
 ```
 
-7. open the file pg_hba.conf for Ubuntu it will be in /etc/postgresql/9.x/main and change this line:
+7. open the file **pg_hba.conf** for Ubuntu it will be in **/etc/postgresql/9.x/main** and change this line:
 ```
-local   all             postgres                                peer
+local      all          postgres        peer
+local      all          all             peer
 ```
 to
 ```
-local   all             postgres                                trust
+local      all          postgres        trust
+local      all          all             trust
 ```
 
 8. Restart the server
